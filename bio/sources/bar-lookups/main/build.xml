@@ -1,0 +1,4 @@
+<project name="bar-interactions-tasks" default="default" basedir=".">
+  <description>build bar-interactions tasks</description>
+  <import file="../../../../imbuild/library.xml"/> 
+</project>

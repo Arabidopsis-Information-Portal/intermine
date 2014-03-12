@@ -1,0 +1,5 @@
+<project name="bar-expressions" default="default" basedir=".">
+  <description>build, test, package bar-expressions</description>
+  
+  <import file="../../../imbuild/source.xml"/>
+</project>

@@ -16,6 +16,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashMap;
 import java.util.Map;
+import org.apache.log4j.Logger;
 
 import org.apache.commons.lang.StringUtils;
 import org.intermine.dataconversion.ItemWriter;
@@ -25,11 +26,13 @@ import org.intermine.sql.Database;
 import org.intermine.xml.full.Item;
 
 /**
- * 
+ *
  * @author Julie Sullivan
  */
 public class BarInteractionsConverter extends BioDBConverter
 {
+    private static final Logger LOG =
+        Logger.getLogger(BarInteractionsConverter.class);
     private static final String DATASET_TITLE = "Interactions data set";
     private static final String DATA_SOURCE_NAME = "BAR";
     private static final int TAXON_ID = 3702;
@@ -55,7 +58,7 @@ public class BarInteractionsConverter extends BioDBConverter
     public void process() throws Exception {
 
     	Connection connection = null;
-    	
+
         if (getDatabase() == null) {
             // no Database when testing and no connection needed
             connection = null;
@@ -65,8 +68,8 @@ public class BarInteractionsConverter extends BioDBConverter
         }
         processQueryResults(connection);
     }
-    
-    private void processQueryResults(Connection connection)    	
+
+    private void processQueryResults(Connection connection)
         throws SQLException, ObjectStoreException {
         ResultSet res = runInteractionsQuery(connection);
     	while (res.next()) {
@@ -85,29 +88,29 @@ public class BarInteractionsConverter extends BioDBConverter
     		// strings that represent the stored gene
     		String geneRefId1 = getGene(gene1);
     		String geneRefId2 = getGene(gene2);
-    		
-    		String interactionRefId = processInteraction(geneRefId1, geneRefId2, quality, index, 
+
+    		String interactionRefId = processInteraction(geneRefId1, geneRefId2, quality, index,
     				pcc, pubString, interactionsDetectionMI, interactionsTypeMI);
-    		processInteractionDetails(interactionRefId, geneRefId1, geneRefId2, pubString, 
+    		processInteractionDetails(interactionRefId, geneRefId1, geneRefId2, pubString,
     				interactionsDetectionMI, interactionsTypeMI);
-    	}   
+    	}
     	res.close();
     }
-    
-    private String processInteraction(String geneRefId1, String geneRefId2, 
-    		Integer quality, Integer index, Double pcc, String pubString, 
+
+    private String processInteraction(String geneRefId1, String geneRefId2,
+    		Integer quality, Integer index, Double pcc, String pubString,
     		String interactionsDetectionMI, String interactionsTypeMI) throws ObjectStoreException {
-    	
+
     	Item interaction = createItem("Interaction");
     	interaction.setReference("gene1", geneRefId1);
     	interaction.setReference("gene2", geneRefId2);
     	store(interaction);
     	return interaction.getIdentifier();
     }
-    
-    private String processInteractionDetails(String interactionRefId, String geneRefId1, 
-    		String geneRefId2, String pubString, String 
-    		interactionsDetectionMI, String interactionsTypeMI) 
+
+    private String processInteractionDetails(String interactionRefId, String geneRefId1,
+    		String geneRefId2, String pubString, String
+    		interactionsDetectionMI, String interactionsTypeMI)
     		throws ObjectStoreException {
     	Item detail = createItem("InteractionDetail");
     	detail.setAttribute("type", INTERACTION_TYPE);
@@ -124,12 +127,12 @@ public class BarInteractionsConverter extends BioDBConverter
         store(detail);
         return detail.getIdentifier();
     }
-    
-    private String getExperiment(String pubString, String interactionsDetectionMI) 
+
+    private String getExperiment(String pubString, String interactionsDetectionMI)
     		throws ObjectStoreException {
         Item experiment = createItem("InteractionExperiment");
         // some publications don't start with PubMed, what are those?
-        if (StringUtils.isNotEmpty(pubString) && pubString.startsWith(PUBMED_PREFIX) 
+        if (StringUtils.isNotEmpty(pubString) && pubString.startsWith(PUBMED_PREFIX)
         		&& pubString.length() >  PUBMED_PREFIX.length() + 1) {
         	String pubRefId = getPublication(pubString);
         	if (StringUtils.isNotEmpty(pubRefId)) {
@@ -137,19 +140,19 @@ public class BarInteractionsConverter extends BioDBConverter
         	}
         }
         if (StringUtils.isNotEmpty(interactionsDetectionMI)) {
-        	experiment.addToCollection("interactionDetectionMethods", 
+        	experiment.addToCollection("interactionDetectionMethods",
         			getTerm(interactionsDetectionMI));
         }
         store(experiment);
         return experiment.getIdentifier();
     }
-    
+
     private String getPublication(String pubString) throws ObjectStoreException {
         String pubMedId =  pubString.substring(PUBMED_PREFIX.length());
-    	
+
     	// why do some look like this?
     	// PubMed18849490                  +
-    	        
+
         String pubRefId = publications.get(pubMedId);
         if (pubRefId != null) {
         	return pubRefId;
@@ -162,26 +165,27 @@ public class BarInteractionsConverter extends BioDBConverter
         return pubRefId;
     }
 
-    private String getGene(String identifier) 
+    private String getGene(String identifier)
     		throws ObjectStoreException {
     	String geneRefId = genes.get(identifier);
 
     	// we've already seen this gene, don't store again
     	if (geneRefId != null) {
-    		return geneRefId;
+		return geneRefId;
     	}
-    	
-    	// create new gene 
+
+    	// create new gene
     	Item gene = createItem("Gene");
     	gene.setReference("organism", getOrganismItem(TAXON_ID));
     	gene.setAttribute("primaryIdentifier", identifier);
-    
-    	// put in our map 
+
+    	// put in our map
+	geneRefId=gene.getIdentifier();
     	genes.put(identifier, geneRefId);
-    	
+
     	// store to database
     	store(gene);
-    	
+
     	return gene.getIdentifier();
     }
 
@@ -215,7 +219,7 @@ public class BarInteractionsConverter extends BioDBConverter
      */
     protected ResultSet runInteractionsQuery(Connection connection) throws SQLException {
         Statement stmt = connection.createStatement();
-    	String query = "select protein1, protein2, quality, index, pcc, bind_id, " +
+    	String query = "select upper(protein1), upper(protein2), quality, index, pcc, bind_id, " +
     			"interactions_detection_mi, interactions_detection, interactions_type_mi, " +
     			"interactions_type from interactions;";
         ResultSet res = stmt.executeQuery(query);

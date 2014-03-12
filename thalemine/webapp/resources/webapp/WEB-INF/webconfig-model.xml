@@ -82,7 +82,7 @@
       <fieldconfig fieldExpr="description"/>
     </fields>
   </class>
-  
+
   <class className="org.intermine.model.bio.InteractionTerm">
     <fields>
       <fieldconfig fieldExpr="identifier"/>
@@ -217,7 +217,23 @@
     </fields>
   </class>
 
+  <class className="org.intermine.model.bio.Sample">
+    <fields>
+      <fieldconfig fieldExpr="name"/>
+    </fields>
 
+  </class>
+  <class className="org.intermine.model.bio.Expression">
+    <fields>
+      <fieldconfig fieldExpr="signal"/>
+      <fieldconfig fieldExpr="averageSignal"/>
+      <fieldconfig fieldExpr="averageControl"/>
+      <fieldconfig fieldExpr="averageRatio"/>
+      <fieldconfig fieldExpr="probe.gene.primaryIdentifier" label="gene"/>
+      <fieldconfig fieldExpr="probe.name" label="probe"/>
+      <fieldconfig fieldExpr="sample.name" label="sample"/>
+    </fields>
+  </class>
 
 
 <!-- exporters -->
@@ -277,8 +293,8 @@
                       constraints="organism.name=[Organism]"
                       views="primaryIdentifier, symbol, secondaryIdentifier, organism.name, chromosome.primaryIdentifier,
                              chromosomeLocation.start, chromosomeLocation.end, chromosomeLocation.strand"/>
-                             
-                             
+
+
       <enrichmentwidgetdisplayer id="publication_enrichment"
                                  title="Publication Enrichment"
                                  description="Publications enriched for genes in this list."
