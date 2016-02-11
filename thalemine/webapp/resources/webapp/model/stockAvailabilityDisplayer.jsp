@@ -7,6 +7,15 @@
 
 <!-- stockAccessionDisplayer.jsp -->
 
+<script>
+function OrderStocks() {
+	var myWindow = window.open("stock_order.html", "Order Stocks from ABRC", "width=900,height=800", "");
+	url = "https://ui.arabidopsis.org/#/contentaccess/login?partnerId=tair&redirect=https://www.arabidopsis.org/servlets/Order/current";
+	//var myWindow = window.open(url, "Order Stocks from ABRC", "width=1000,height=600", "");
+	//myWindow.document.getElementByName("stock_number").value="CS65790";
+	//myWindow.document.updateform.submit();
+}
+</script>
 
 <div id="stock-availability_displayer" class="collection-table">
 
@@ -33,7 +42,7 @@
 	font-family:Arial;
 	font-size:14px;
 	padding:7px 25px;
-	width:150px;
+	width:250px;
 	text-decoration:none;
 	text-shadow:0px 1px 0px #e1e2ed;
 }
@@ -106,6 +115,9 @@ a.button:active {
      				 		
      				 		<c:if test = "${item.stockCenter eq 'ABRC'}">
   								<a class="button" href="${item.externalStockObjectUrlPrefix}${item.stockNumber}&type=germplasm">Order from ABRC</a>
+  								
+  								<a class="button" href="#" onclick="OrderStocks();return false;">Order ABRC Stocks/Login to TAIR</a>
+  							
 							</c:if>
 							<c:if test = "${item.stockCenter eq 'NASC'}">
   								<a class="button" href="${item.externalStockObjectUrlPrefix}${item.stockNumber}">Order from NASC</a>
