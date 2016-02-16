@@ -8,12 +8,14 @@
 <!-- stockAccessionDisplayer.jsp -->
 
 <script>
-function OrderStocks() {
-	var myWindow = window.open("stock_order.html", "Order Stocks from ABRC", "width=900,height=800", "");
-	url = "https://ui.arabidopsis.org/#/contentaccess/login?partnerId=tair&redirect=https://www.arabidopsis.org/servlets/Order/current";
-	//var myWindow = window.open(url, "Order Stocks from ABRC", "width=1000,height=600", "");
-	//myWindow.document.getElementByName("stock_number").value="CS65790";
-	//myWindow.document.updateform.submit();
+function OrderStocks(stockurl) {
+	var myWindow = window.open(stockurl, "Order Stocks from ABRC", "width=900,height=800", "");
+}
+</script>
+
+<script>
+function test(var1) {
+    alert(var1);
 }
 </script>
 
@@ -116,8 +118,14 @@ a.button:active {
      				 		<c:if test = "${item.stockCenter eq 'ABRC'}">
   								<a class="button" href="${item.externalStockObjectUrlPrefix}${item.stockNumber}&type=germplasm">Order from ABRC</a>
   								
-  								<a class="button" href="#" onclick="OrderStocks();return false;">Order ABRC Stocks/Login to TAIR</a>
+  								<c:set var="stockurl" scope="request" value="stockOrder.do?stockAccessionId=${item.stockNumber}"/>
+  								<c:out value="${stockurl}"/>
   							
+  								
+  								<a class="button" href="#" onclick="OrderStocks('${stockurl}');return false;">Order ABRC Stocks/Login to TAIR</a>
+  								
+  								<a class="button" href="#" onclick="test('${stockurl}')">Test Me!</a>
+  								  								  							
 							</c:if>
 							<c:if test = "${item.stockCenter eq 'NASC'}">
   								<a class="button" href="${item.externalStockObjectUrlPrefix}${item.stockNumber}">Order from NASC</a>

@@ -43,3 +43,12 @@
     <put name="body" value="dataSummary.tile"/>
     <put name="pageName" value="dataSummary"/>
 </definition>
+
+
+<definition name="stockOrder.page" extends="layout.template">
+  <put name="body" value="stockOrder.tile" />
+  <put name="pageName" value="stockOrder" />
+</definition>
+
+<definition name="stockOrder.tile" path="/stockOrder.jsp"
+  controllerUrl="/orderStock.do" />

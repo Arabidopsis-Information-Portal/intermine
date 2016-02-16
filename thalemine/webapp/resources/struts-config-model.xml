@@ -56,3 +56,8 @@
 
 <action path="/dataCategories" forward="dataSummary.page" />
 <action path="/dataSummary" forward="dataSummary.page" />
+
+<action path="/orderStock"
+  type="org.thalemine.web.controller.StockOrderController" />
+ 
+ <action path="/stockOrder" forward="stockOrder.page" /> 
