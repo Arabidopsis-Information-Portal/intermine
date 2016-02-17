@@ -5,7 +5,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="im"%>
 
-
+<title>Order ABRC Stock</title>
 <!-- stockOrder -->
 <html:xhtml />
 <style>

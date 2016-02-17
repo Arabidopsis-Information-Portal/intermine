@@ -24,7 +24,7 @@ import org.thalemine.web.metadata.DataSummaryService;
 public class StockOrderController extends TilesAction {
 
 	private final static String TAIR_URL_PREFIX = "https://ui.arabidopsis.org/#/contentaccess/login?partnerId=tair&redirect=https%3A%2F%2Fwww.arabidopsis.org%2Fservlets%2FTairObject%3Fid%3D";
-	private final static String OBJECT_TYPE = "germplasm";
+	private final static String OBJECT_TYPE = "%26type%3Dgermplasm";
 
 	protected static final Logger log = Logger.getLogger(StockOrderController.class);
 	private String stockAccessionId;
@@ -35,26 +35,24 @@ public class StockOrderController extends TilesAction {
 		Exception exception = null;
 
 		log.info("StockOrderController has started.");
-		this.stockAccessionId = "6530293244";
 
 		String accessionId = request.getParameter("stockAccessionId");
-		log.info("Accession Id:" + accessionId );
-				
-				
+		log.info("Accession Id:" + accessionId);
+
 		String url = null;
 		if (!StringUtils.isBlank("accessionId")) {
 			try {
-				
+
 				stockAccessionId = accessionId;
 				log.info("Stock Accession Id:" + stockAccessionId);
-				url= createURL(stockAccessionId);
+				url = createURL(stockAccessionId);
 				log.info("Stock URL:" + url);
-				
-				} catch (Exception e) {
+
+			} catch (Exception e) {
 				exception = e;
 			} finally {
 				if (exception != null) {
-					log.error("Error occurred while seeting up StockOrder Info" + "; Message: "
+					log.error("Error occurred while setting up StockOrder Info" + "; Message: "
 							+ exception.getMessage() + "; Cause: " + exception.getCause());
 					exception.printStackTrace();
 
@@ -64,14 +62,16 @@ public class StockOrderController extends TilesAction {
 					log.info("StockOrderController has completed.");
 				}
 			}
+		} else {
+			log.error("Stock Accession Id cannot be null!");
 		}
 
 		return null;
 	}
 
 	private String createURL(String id) throws MalformedURLException, URISyntaxException, UnsupportedEncodingException {
-		
-		String urlStr = TAIR_URL_PREFIX + id  + "%26type%3Dgermplasm";
+
+		String urlStr = TAIR_URL_PREFIX + id + OBJECT_TYPE;
 		log.info("URL: " + urlStr);
 
 		return urlStr;

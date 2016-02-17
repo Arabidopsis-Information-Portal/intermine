@@ -119,13 +119,9 @@ a.button:active {
   								<a class="button" href="${item.externalStockObjectUrlPrefix}${item.stockNumber}&type=germplasm">Order from ABRC</a>
   								
   								<c:set var="stockurl" scope="request" value="stockOrder.do?stockAccessionId=${item.stockNumber}"/>
-  								<c:out value="${stockurl}"/>
-  							
-  								
+  															
   								<a class="button" href="#" onclick="OrderStocks('${stockurl}');return false;">Order ABRC Stocks/Login to TAIR</a>
-  								
-  								<a class="button" href="#" onclick="test('${stockurl}')">Test Me!</a>
-  								  								  							
+  						 								  								  							
 							</c:if>
 							<c:if test = "${item.stockCenter eq 'NASC'}">
   								<a class="button" href="${item.externalStockObjectUrlPrefix}${item.stockNumber}">Order from NASC</a>
