@@ -230,7 +230,7 @@ if (typeof imtables != 'undefined' && imtables.setMessages) {
       <tiles:get name="errorMessages"/>
 
       <%-- footer (welcome logo, bottom nav, and feedback link) --%>
-    <c:import url="footer.jsp"/>
+    <c:import url="stockorderfooter.jsp"/>
 
       <c:if test="${param.debug != null}">
         <im:vspacer height="11"/>
@@ -249,5 +249,6 @@ if (typeof imtables != 'undefined' && imtables.setMessages) {
     </c:if>
   </div>
 </body>
+
 </html:html>
 <!-- /stockorderlayout.jsp -->

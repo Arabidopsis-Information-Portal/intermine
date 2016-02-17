@@ -50,7 +50,7 @@
     <put name="title" value="/title.jsp" />
     <put name="errorMessagesContainers" value="errorMessagesContainers.tile"/>
     <put name="errorMessages" value="errorMessages.tile"/>
-    <put name="footer" value="/footer.jsp"/>
+    <put name="footer" value="/stockorderfooter.jsp"/>
     <put name="body" value=""/>
     <put name="contactForm" value="contactForm.jsp"/>
   </definition>
