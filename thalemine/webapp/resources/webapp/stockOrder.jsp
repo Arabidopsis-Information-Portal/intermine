@@ -54,8 +54,10 @@ display: block;
 
 <div class="stock_order">
 
+<p align="left">
 <img class="logo" align="top"
 		src="model/images/logo.png">
+</p>
 
 <div id="explanation" class="info">This window will help you order stocks. Your
 	Arabidopsis stock orders will be fulfilled by ABRC. Your order will be
