@@ -15,14 +15,19 @@ font-family:Arial, Helvetica, sans-serif;
 font-size:13px;	
 }
 
-.img_header{
-	padding:10px;
+.logo {
+    padding-top: 5px;
+    padding-right: 5x;
+    padding-bottom: 0px;
+    padding-left: 5px;
+    display: block;
+    border: none;
 }
 
 /* information messages*/
 .info {
 border: 1px solid;
-margin: 10px 0px;
+margin: 3px 0px;
 padding:15px 10px 15px 50px;
 background-repeat: no-repeat;
 background-position: 10px center;
@@ -36,7 +41,7 @@ border-bottom-width: 2px;
 border-right-width: 2px;
 box-sizing: border-box;
 line-height: 20px;
-font-size: 14px;
+font-size: 13px;
 margin-bottom: 20px;
 padding-bottom: 15px;
 padding-left: 15px;
@@ -49,12 +54,9 @@ display: block;
 
 <div class="stock_order">
 
-<div id="header" class="img_header">
-	<img align="top"
+<img class="logo" align="top"
 		src="model/images/logo.png">
-</div>
-<p>
-</p>
+
 <div id="explanation" class="info">This window will help you order stocks. Your
 	Arabidopsis stock orders will be fulfilled by ABRC. Your order will be
 	taken and processed by TAIR. To use this order system, you will need to
