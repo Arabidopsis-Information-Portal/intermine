@@ -5,6 +5,8 @@
 <%@ taglib tagdir="/WEB-INF/tags" prefix="im"%>
 <%@ taglib uri="/WEB-INF/struts-tiles.tld" prefix="tiles"%>
 
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+
 <!-- stockAccessionDisplayer.jsp -->
 
 <script>
@@ -14,8 +16,8 @@ function OrderStocks(stockurl) {
 </script>
 
 <script>
-function test(var1) {
-    alert(var1);
+window.openNewWindow = function(url) {
+    window.open(url, "", "width=1000,height=600", "");
 }
 </script>
 
@@ -116,15 +118,14 @@ a.button:active {
      				 		<td>			
      				 		
      				 		<c:if test = "${item.stockCenter eq 'ABRC'}">
-  								<a class="button" href="${item.externalStockObjectUrlPrefix}${item.stockNumber}&type=germplasm">Order from ABRC</a>
-  								
+  							 								
   								<c:set var="stockurl" scope="request" value="stockOrder.do?stockAccessionId=${item.stockNumber}"/>
   															
-  								<a class="button" href="#" onclick="OrderStocks('${stockurl}');return false;">Order ABRC Stocks/Login to TAIR</a>
+  								<a class="button" href="#" onclick="OrderStocks('${stockurl}');return false;">Order from ABRC <i class="fa fa-external-link"></i></a>
   						 								  								  							
 							</c:if>
 							<c:if test = "${item.stockCenter eq 'NASC'}">
-  								<a class="button" href="${item.externalStockObjectUrlPrefix}${item.stockNumber}">Order from NASC</a>
+  								<a class="button" onclick="openNewWindow('${item.externalStockObjectUrlPrefix}${item.stockNumber}');">Order from NASC <i class="fa fa-external-link"></i></a>
 							</c:if>
 	
      				 		</td>
