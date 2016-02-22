@@ -42,43 +42,6 @@ public class StockOrderController extends TilesAction {
 
 		String accessionId = request.getParameter("stockAccessionId");
 		log.info("Accession Id:" + accessionId);
-
-		Cookie[] cookies = null;
-		cookies = request.getCookies();
-
-		log.info("Cookies:");
-		
-		for (int i = 0; i < cookies.length; i++) {
-			String name = cookies[i].getName();
-			String value = cookies[i].getValue();
-			String domain = cookies[i].getDomain();
-			boolean secure = cookies[i].getSecure();
-			int maxAge = cookies[i].getMaxAge();
-			String path = cookies[i].getPath();
-
-			log.info("Cookie Name:" + name + "; " + "Cookie Value: " + value + "; " + "Cookie Domain: " + domain + "; "
-					+ "Cookie Secure: " + secure + "; " + "Cookie MaxAge: " + maxAge + "; " + "Cookie Path: " + path);
-
-		}
-
-		
-		 	CookieManager cm = new CookieManager();
-		    cm.setCookiePolicy(CookiePolicy.ACCEPT_ALL);
-		    CookieHandler.setDefault(cm);
-
-		    new URL("https://www.arabidopsis.org").openConnection().getContent();
-		    CookieStore cookieStore = cm.getCookieStore();
-		    
-		    List<HttpCookie> cookiesH = cookieStore.getCookies();
-		    for (HttpCookie cookie : cookiesH) {
-		      log.info("Name = " + cookie.getName());
-		      log.info("Value = " + cookie.getValue());
-		      log.info("Lifetime (seconds) = " + cookie.getMaxAge());
-		      log.info("Path = " + cookie.getPath());
-		      log.info("Domain = " + cookie.getDomain());
-		      log.info("Secure = " + cookie.getSecure());
-		      log.info("Expired = " + cookie.hasExpired());
-		    }
 		    
 		
 		String url = null;
