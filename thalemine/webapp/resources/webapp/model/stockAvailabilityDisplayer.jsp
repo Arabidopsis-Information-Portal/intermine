@@ -15,12 +15,6 @@ function OrderStocks(stockurl) {
 }
 </script>
 
-<script>
-window.openNewWindow = function(url) {
-    window.open(url, "", "width=1000,height=600", "");
-}
-</script>
-
 <div id="stock-availability_displayer" class="collection-table">
 
 <style>
@@ -125,7 +119,7 @@ a.button:active {
   						 								  								  							
 							</c:if>
 							<c:if test = "${item.stockCenter eq 'NASC'}">
-  								<a class="button" onclick="openNewWindow('${item.externalStockObjectUrlPrefix}${item.stockNumber}');">Order from NASC <i class="fa fa-external-link"></i></a>
+								<a class="button" href="${item.externalStockObjectUrlPrefix}${item.stockNumber}" target="_blank">Order from NASC <i class="fa fa-external-link"></i></a>
 							</c:if>
 	
      				 		</td>
