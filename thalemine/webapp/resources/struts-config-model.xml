@@ -60,4 +60,10 @@
 <action path="/orderStock"
   type="org.thalemine.web.controller.StockOrderController" />
  
- <action path="/stockOrder" forward="stockOrder.page" /> 
+<action path="/stockOrder" forward="stockOrder.page" /> 
+
+<action path="/geneRifLinks"
+        type="org.thalemine.web.controller.GeneRifSubmissionController">
+     <forward name="links" path="/model/geneRifLinks.jsp"/>   
+</action>
+
