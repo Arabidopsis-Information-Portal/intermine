@@ -65,7 +65,7 @@
 
 	<class name="SequenceAlteration" extends="SequenceCollection SequenceFeature"
 		is-interface="true">
-		<reference name="alterationTerm" referenced-type="SequenceAlterationType"
+		<reference name="alterationType" referenced-type="SequenceAlterationType"
 			/>
 		<collection name="alleles" referenced-type="Allele"
 			reverse-reference="sequenceAlteration" />
