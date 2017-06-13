@@ -1,7 +1,7 @@
 package org.intermine.bio.web.displayer;
 
 /*
- * Copyright (C) 2002-2016 FlyMine
+ * Copyright (C) 2002-2017 FlyMine
  *
  * This code may be freely distributed and modified under the
  * terms of the GNU Lesser General Public Licence.  This should
@@ -24,8 +24,6 @@ import org.intermine.web.logic.results.ReportObject;
  */
 public class CytoscapeNetworkDisplayer extends ReportDisplayer
 {
-
-
     /**
      * Construct with config and the InterMineAPI.
      * @param config to describe the report displayer
@@ -37,7 +35,7 @@ public class CytoscapeNetworkDisplayer extends ReportDisplayer
 
     @Override
     public void display(HttpServletRequest request, ReportObject reportObject) {
-         InterMineObject object = reportObject.getObject();
-         request.setAttribute("cytoscapeInteractionObjectId", object.getId());
+        InterMineObject object = reportObject.getObject();
+        request.setAttribute("cytoscapeInteractionObjectId", object.getId());
     }
 }

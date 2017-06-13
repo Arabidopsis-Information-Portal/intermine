@@ -1,7 +1,7 @@
 package org.intermine.web.logic.widget;
 
 /*
- * Copyright (C) 2002-2016 FlyMine
+ * Copyright (C) 2002-2017 FlyMine
  *
  * This code may be freely distributed and modified under the
  * terms of the GNU Lesser General Public Licence.  This should
@@ -13,6 +13,7 @@ package org.intermine.web.logic.widget;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.commons.lang.math.NumberUtils;
 import org.apache.log4j.Logger;
 import org.intermine.api.profile.InterMineBag;
 import org.intermine.objectstore.ObjectStore;
@@ -89,7 +90,15 @@ public class WidgetLdr
         } else if ("false".equalsIgnoreCase(value)) {
             queryValue = new QueryValue(false);
         } else {
-            queryValue = new QueryValue(value);
+            if (!NumberUtils.isNumber(value)) {
+                queryValue = new QueryValue(value);
+            } else {
+                try {
+                    queryValue = new QueryValue(Integer.parseInt(value));
+                } catch (NumberFormatException nfe) {
+                    queryValue = new QueryValue(Double.parseDouble(value));
+                }
+            }
         }
         return queryValue;
     }

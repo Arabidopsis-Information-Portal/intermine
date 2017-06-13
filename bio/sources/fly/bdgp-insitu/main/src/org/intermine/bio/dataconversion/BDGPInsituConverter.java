@@ -1,7 +1,7 @@
 package org.intermine.bio.dataconversion;
 
 /*
- * Copyright (C) 2002-2016 FlyMine
+ * Copyright (C) 2002-2017 FlyMine
  *
  * This code may be freely distributed and modified under the
  * terms of the GNU Lesser General Public Licence.  This should
@@ -165,8 +165,7 @@ public class BDGPInsituConverter extends BioFileConverter
         }
     }
 
-    private Item getResult(String key, String geneId, String pubId, String stage)
-    {
+    private Item getResult(String key, String geneId, String pubId, String stage) {
         if (results.containsKey(key)) {
             return results.get(key);
         }

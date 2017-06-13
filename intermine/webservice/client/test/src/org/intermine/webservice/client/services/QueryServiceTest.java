@@ -13,7 +13,7 @@ import org.intermine.webservice.client.results.Page;
 import org.intermine.webservice.client.util.TestUtil;
 
 /*
- * Copyright (C) 2002-2016 FlyMine
+ * Copyright (C) 2002-2017 FlyMine
  *
  * This code may be freely distributed and modified under the
  * terms of the GNU Lesser General Public Licence.  This should
@@ -70,14 +70,7 @@ public class QueryServiceTest extends TestCase
     private String getSimpleXml() {
         return "<query name=\"\" model=\"testmodel\" view=\"Employee.name Employee.department.name "
                 + "Employee.department.company.name Employee.fullTime Employee.address.address\" sortOrder=\"Employee.name ASC\">"
-                + "<node path=\"Employee\" type=\"Employee\">"
-                + "</node>"
-                + "<node path=\"Employee.address\" type=\"Address\">"
-                + "</node>"
-                + "<node path=\"Employee.address.address\" type=\"String\">"
-                + "<constraint op=\"CONTAINS\" value=\"AVille\" description=\"\" identifier=\"\" code=\"A\">"
-                + "</constraint>"
-                + "</node>"
+                + "<constraint path=\"Employee.address.address\" op=\"CONTAINS\" value=\"AVille\" code=\"A\"/>"
                 + "</query>";
     }
 

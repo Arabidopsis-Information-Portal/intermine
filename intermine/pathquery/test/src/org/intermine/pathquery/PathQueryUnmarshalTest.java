@@ -12,7 +12,7 @@ import junit.framework.TestCase;
 import org.intermine.metadata.Model;
 
 /*
- * Copyright (C) 2002-2016 FlyMine
+ * Copyright (C) 2002-2017 FlyMine
  *
  * This code may be freely distributed and modified under the
  * terms of the GNU Lesser General Public Licence.  This should
@@ -120,17 +120,6 @@ public class PathQueryUnmarshalTest extends  TestCase
         } catch (RuntimeException e) {
             assertEquals("Cannot have anything other than value tag inside a constraint",
                     e.getCause().getMessage());
-            return;
-        }
-        fail("Expected exception");
-    }
-
-    public void testConfusedStyle() {
-        try {
-            createQuery("ConfusedXMLFormat.xml");
-        } catch (RuntimeException e) {
-            assertEquals("Cannot set path in a constraint inside a node",
-                e.getCause().getMessage());
             return;
         }
         fail("Expected exception");

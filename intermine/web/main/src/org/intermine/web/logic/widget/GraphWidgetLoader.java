@@ -1,7 +1,7 @@
 package org.intermine.web.logic.widget;
 
 /*
- * Copyright (C) 2002-2016 FlyMine
+ * Copyright (C) 2002-2017 FlyMine
  *
  * This code may be freely distributed and modified under the
  * terms of the GNU Lesser General Public Licence.  This should
@@ -226,10 +226,10 @@ public class GraphWidgetLoader extends WidgetLdr implements DataSetLdr
                 if (queryValue != null) {
                     if (!"null".equalsIgnoreCase(queryValue.getValue().toString())) {
                         QueryEvaluable qe = null;
-                        if (isFilterConstraint || queryValue.getValue() instanceof Boolean) {
-                            qe = qfConstraint;
-                        } else {
+                        if ( queryValue.getValue() instanceof String && !isFilterConstraint) {
                             qe = new QueryExpression(QueryExpression.LOWER, qfConstraint);
+                        } else {
+                            qe = qfConstraint;
                         }
                         cs.addConstraint(new SimpleConstraint(qe, pc.getOp(), queryValue));
                     } else {

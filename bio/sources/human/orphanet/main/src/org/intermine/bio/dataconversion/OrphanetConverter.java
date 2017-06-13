@@ -1,7 +1,7 @@
 package org.intermine.bio.dataconversion;
 
 /*
- * Copyright (C) 2002-2016 FlyMine
+ * Copyright (C) 2002-2017 FlyMine
  *
  * This code may be freely distributed and modified under the
  * terms of the GNU Lesser General Public Licence.  This should
@@ -63,7 +63,7 @@ public class OrphanetConverter extends BioFileConverter
     }
 
     private void processXML(File file)
-            throws SAXException, IOException, ParserConfigurationException, ObjectStoreException {
+        throws SAXException, IOException, ParserConfigurationException, ObjectStoreException {
 
         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();

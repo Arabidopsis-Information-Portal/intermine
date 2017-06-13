@@ -1,7 +1,7 @@
 package org.intermine.api.util;
 
 /*
- * Copyright (C) 2002-2016 FlyMine
+ * Copyright (C) 2002-2017 FlyMine
  *
  * This code may be freely distributed and modified under the
  * terms of the GNU Lesser General Public Licence.  This should
@@ -37,8 +37,8 @@ public final class NameUtil
             + "A-Z, a-z, 0-9, underscores and dashes.";
     private static final String QUERY_NAME_PREFIX = "query_";
     private static final Map<String, String> SPEC_CHAR_TO_TEXT = new HashMap<String, String>();
-    // A-Z, a-z, 0-9, underscores and dashes.  And spaces.  And dots.
-    private static final Pattern SPECIAL_CHARS_PATTERN = Pattern.compile("[^\\w\\s\\.\\-:]");
+    // A-Z, a-z, 0-9, underscores and dashes.  And spaces.  And dots. And :+()
+    private static final Pattern SPECIAL_CHARS_PATTERN = Pattern.compile("[^\\w\\s\\.\\-:+()]");
     // A-Z, a-z, 0-9, underscores and dashes.
     private static final Pattern NO_SPECIAL_CHARS_PATTERN = Pattern.compile("[^\\w\\-:]");
 

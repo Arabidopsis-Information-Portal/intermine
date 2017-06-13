@@ -1,7 +1,7 @@
 package org.intermine.web.struts;
 
 /*
- * Copyright (C) 2002-2016 FlyMine
+ * Copyright (C) 2002-2017 FlyMine
  *
  * This code may be freely distributed and modified under the
  * terms of the GNU Lesser General Public Licence.  This should
@@ -272,7 +272,7 @@ public class TemplateAction extends InterMineAction
         // also, note we are not saving any previous trails. trail resets at
         // queries and bags
         if (saveQuery) {
-            trail = "|query";
+            trail = "%7Cquery";
         } else {
             trail = "";
             // session.removeAttribute(Constants.QUERY);

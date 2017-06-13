@@ -1,7 +1,7 @@
 package org.intermine.api.query;
 
 /*
- * Copyright (C) 2002-2016 FlyMine
+ * Copyright (C) 2002-2017 FlyMine
  *
  * This code may be freely distributed and modified under the
  * terms of the GNU Lesser General Public Licence.  This should
@@ -245,5 +245,14 @@ public abstract class QueryExecutor
      */
     public abstract Query makeQuery(PathQuery pathQuery) throws ObjectStoreException;
 
-
+    /**
+     * Update the map to query queryToPathToQueryNode
+     *
+     * @param q The query.
+     * @param pathToQueryNode the pathToQueryNode
+     */
+    public void updateQueryToPathToQueryNode(Query q, Map<String,
+            QuerySelectable> pathToQueryNode) {
+        queryToPathToQueryNode.put(q, pathToQueryNode);
+    }
 }

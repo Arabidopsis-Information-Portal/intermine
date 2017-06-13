@@ -1,7 +1,7 @@
 package org.intermine.bio.dataconversion;
 
 /*
- * Copyright (C) 2002-2016 FlyMine
+ * Copyright (C) 2002-2017 FlyMine
  *
  * This code may be freely distributed and modified under the
  * terms of the GNU Lesser General Public Licence.  This should
@@ -107,7 +107,8 @@ public class WormBaseIdResolverFactory extends IdResolverFactory
 
                     // HACK - Additionally, load WB2NCBI to have ncbi ids
                     LOG.info("To process WB2NCBI file");
-                    String wb2NcbiFileName = resolverFileRoot.trim() + "/" + resolverFileSymboWb2Ncbi;
+                    String wb2NcbiFileName = resolverFileRoot.trim() + "/"
+                            + resolverFileSymboWb2Ncbi;
                     File wb2NcbiDataFile = new File(wb2NcbiFileName);
 
                     if (wb2NcbiDataFile.exists()) {

@@ -1,7 +1,7 @@
 package org.intermine.webservice.server.query.result;
 
 /*
- * Copyright (C) 2002-2016 FlyMine
+ * Copyright (C) 2002-2017 FlyMine
  *
  * This code may be freely distributed and modified under the
  * terms of the GNU Lesser General Public Licence.  This should
@@ -383,8 +383,12 @@ public class QueryResultService extends AbstractQueryService
         }
         return processor;
     }
-
-    private PathQueryExecutor getPathQueryExecutor() {
+    /**
+     * Return the PathQueryExecutor
+     *
+     * @return the PathQueryExecutor
+     */
+    protected PathQueryExecutor getPathQueryExecutor() {
         final Profile profile = getPermission().getProfile();
         return im.getPathQueryExecutor(profile);
     }

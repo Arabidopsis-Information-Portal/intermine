@@ -1,7 +1,7 @@
 package org.intermine.web.struts;
 
 /*
- * Copyright (C) 2002-2016 FlyMine
+ * Copyright (C) 2002-2017 FlyMine
  *
  * This code may be freely distributed and modified under the
  * terms of the GNU Lesser General Public Licence.  This should
@@ -160,7 +160,7 @@ public class ModifyBagDetailsAction extends InterMineAction
                     templateManager.getConversionTemplates(), classA, classB, imBag);
             q.setTitle(type2 + "s from list '" + imBag.getName() + "'");
             SessionMethods.loadQuery(q, session, response);
-            final String trail = "|bag." + imBag.getName();
+            final String trail = "%7Cbag." + imBag.getName();
             return new ForwardParameters(mapping.findForward("results"))
                                .addParameter("trail", trail)
                                .forward();

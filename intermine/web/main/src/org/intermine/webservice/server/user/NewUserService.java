@@ -1,7 +1,7 @@
 package org.intermine.webservice.server.user;
 
 /*
- * Copyright (C) 2002-2016 FlyMine
+ * Copyright (C) 2002-2017 FlyMine
  *
  * This code may be freely distributed and modified under the
  * terms of the GNU Lesser General Public Licence.  This should
@@ -159,7 +159,7 @@ public class NewUserService extends JSONService
         private final boolean wantsSpam;
 
         NewUserInput() {
-            username = request.getParameter("name");
+            username = request.getParameter("name").toLowerCase();
             password = request.getParameter("password");
             wantsSpam = Boolean.parseBoolean(request.getParameter("subscribe-to-list"));
             validate();

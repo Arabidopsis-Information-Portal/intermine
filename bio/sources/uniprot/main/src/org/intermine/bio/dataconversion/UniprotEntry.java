@@ -1,7 +1,7 @@
 package org.intermine.bio.dataconversion;
 
 /*
- * Copyright (C) 2002-2016 FlyMine
+ * Copyright (C) 2002-2017 FlyMine
  *
  * This code may be freely distributed and modified under the
  * terms of the GNU Lesser General Public Licence.  This should
@@ -85,9 +85,7 @@ public class UniprotEntry
      * @return variable
      */
     public String getAttribute() {
-        String attribute = temp;
-        temp = null;
-        return attribute;
+        return temp;
     }
 
     /**
@@ -125,7 +123,10 @@ public class UniprotEntry
         reset();
     }
 
-    @SuppressWarnings({ "unchecked", "rawtypes" })
+    /**
+     * @param collectionName name of collection
+     * @return the collection specified
+     */
     public List<String> getCollection(String collectionName) {
         List<String> values = collections.get(collectionName);
         if (values == null) {

@@ -1,7 +1,7 @@
 package org.intermine.bio.dataconversion;
 
 /*
- * Copyright (C) 2002-2016 FlyMine
+ * Copyright (C) 2002-2017 FlyMine
  *
  * This code may be freely distributed and modified under the
  * terms of the GNU Lesser General Public Licence.  This should
@@ -889,6 +889,7 @@ public class UniprotConverter extends BioDirectoryConverter
             // accessions
             for (String accession : uniprotEntry.getAccessions()) {
                 createSynonym(proteinRefId, accession, true);
+                createCrossReference(proteinRefId, accession, "UniProt", true);
             }
 
             // primaryIdentifier if isoform
@@ -931,6 +932,8 @@ public class UniprotConverter extends BioDirectoryConverter
                     setCrossReference(protein.getIdentifier(), identifier, key, false);
                 }
             }
+
+
         }
 
         // if cross references not listed in CONFIG, load all

@@ -1,7 +1,7 @@
 package org.intermine.pathquery;
 
 /*
- * Copyright (C) 2002-2016 FlyMine
+ * Copyright (C) 2002-2017 FlyMine
  *
  * This code may be freely distributed and modified under the
  * terms of the GNU Lesser General Public Licence.  This should
@@ -2225,7 +2225,7 @@ public class PathQuery implements Cloneable
     {
         private final List<PathConstraint> listToSortBy;
 
-        public ConstraintComparator (List<PathConstraint> listToSortBy) {
+        ConstraintComparator (List<PathConstraint> listToSortBy) {
             this.listToSortBy = listToSortBy;
         }
 
@@ -2485,7 +2485,12 @@ public class PathQuery implements Cloneable
         return conb.toString();
     }
 
-    private String constraintToJson(PathConstraint constraint, String code) {
+    /**
+     * @param constraint constraint to convert
+     * @param code code for constraint, e.g. A
+     * @return constraint in JSON format
+     */
+    protected String constraintToJson(PathConstraint constraint, String code) {
         if (PathConstraint.getType(constraint) != null) { // Would be nice to test code instead...
             return typeConstraintToJson(constraint);
         } else {

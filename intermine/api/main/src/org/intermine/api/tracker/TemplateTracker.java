@@ -1,7 +1,7 @@
 package org.intermine.api.tracker;
 
 /*
- * Copyright (C) 2002-2016 FlyMine
+ * Copyright (C) 2002-2017 FlyMine
  *
  * This code may be freely distributed and modified under the
  * terms of the GNU Lesser General Public Licence.  This should
@@ -21,17 +21,17 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Queue;
 import java.util.Map.Entry;
+import java.util.Queue;
 
 import org.apache.log4j.Logger;
 import org.intermine.api.profile.Profile;
 import org.intermine.api.tag.TagNames;
 import org.intermine.api.tag.TagTypes;
+import org.intermine.api.template.TemplateManager;
 import org.intermine.api.tracker.track.TemplateTrack;
 import org.intermine.api.tracker.track.Track;
 import org.intermine.api.tracker.util.TrackerUtil;
-import org.intermine.api.template.TemplateManager;
 
 /**
  * Class for tracking the templates execution by the users. When a user executes a template,
@@ -188,6 +188,18 @@ public class TemplateTracker extends AbstractTracker
         }
         templateRank.put("minRank", ++rankDisplayed);
         return templateRank;
+    }
+
+    /**
+     * get rank for a specific template
+     *
+     * @param templateManager manager of templates
+     * @param templateName template to test
+     * @return rank as an integer
+     */
+    protected Integer getRank(TemplateManager templateManager, String templateName) {
+        Map<String, Integer> ranks = getRank(templateManager);
+        return ranks.get(templateName);
     }
 
     /**

@@ -1,7 +1,7 @@
 package org.intermine.api.tracker;
 
 /*
- * Copyright (C) 2002-2016 FlyMine
+ * Copyright (C) 2002-2017 FlyMine
  *
  * This code may be freely distributed and modified under the
  * terms of the GNU Lesser General Public Licence.  This should
@@ -154,6 +154,20 @@ public class TrackerDelegate implements Shutdownable
         TemplateTracker tt = getTemplateTracker();
         if (tt != null) {
             return tt.getRank(templateManager);
+        }
+        return null;
+    }
+
+    /**
+     * Return the rank associated to a single template
+     * @param templateManager the template manager
+     * @param templateName the template to get the rank for
+     * @return rank of specified template
+     */
+    public Integer getRank(TemplateManager templateManager, String templateName) {
+        TemplateTracker tt = getTemplateTracker();
+        if (tt != null) {
+            return tt.getRank(templateManager, templateName);
         }
         return null;
     }

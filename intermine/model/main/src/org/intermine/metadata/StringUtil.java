@@ -1,7 +1,7 @@
 package org.intermine.metadata;
 
 /*
- * Copyright (C) 2002-2016 FlyMine
+ * Copyright (C) 2002-2017 FlyMine
  *
  * This code may be freely distributed and modified under the
  * terms of the GNU Lesser General Public Licence.  This should
@@ -33,6 +33,34 @@ public final class StringUtil
 
     private StringUtil() {
         // do nothing
+    }
+
+    /**
+     * Flattens source name. e.g. LongOligo changes to long-oligo
+     *
+     * @param sourceName the String to alter
+     * @return the altered string
+     */
+    public static String getFlattenedSourceName(String sourceName) {
+        if (sourceName == null) {
+            return null;
+        }
+        String[] array = sourceName.split("(?=\\p{Upper})");
+        StringBuilder sb = new StringBuilder();
+        boolean firstWord = true;
+        for (String s : array) {
+            if (StringUtils.isEmpty(s)) {
+                continue;
+            }
+            if (!firstWord) {
+                sb.append("-");
+            } else {
+                firstWord = false;
+            }
+            sb.append(s);
+        }
+        String s = sb.toString();
+        return s.toLowerCase();
     }
 
     /**

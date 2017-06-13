@@ -1,7 +1,7 @@
 package org.intermine.bio.dataconversion;
 
 /*
- * Copyright (C) 2002-2016 FlyMine
+ * Copyright (C) 2002-2017 FlyMine
  *
  * This code may be freely distributed and modified under the
  * terms of the GNU Lesser General Public Licence.  This should
@@ -182,6 +182,8 @@ public class Protein2iprConverter extends BioFileConverter
             dbName = "SMART";
         } else if (dbId.startsWith("SSF")) {
             dbName = "SUPERFAMILY";
+        } else if (dbId.startsWith("SFLD")) {
+            dbName = "Structure-Function Linkage Database (SFLD)";
         } else if (dbId.startsWith("PS")) {
             dbName = "PROSITE";
         } else if (dbId.startsWith("PR")) {

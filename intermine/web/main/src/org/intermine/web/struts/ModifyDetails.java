@@ -1,7 +1,7 @@
 package org.intermine.web.struts;
 
 /*
- * Copyright (C) 2002-2016 FlyMine
+ * Copyright (C) 2002-2017 FlyMine
  *
  * This code may be freely distributed and modified under the
  * terms of the GNU Lesser General Public Licence.  This should
@@ -108,9 +108,9 @@ public class ModifyDetails extends DispatchAction
         // add results table to trail
         String trail = request.getParameter("trail");
         if (trail != null) {
-            trail += "|results." + identifier;
+            trail += "%7Cresults." + identifier;
         } else {
-            trail = "|results." + identifier;
+            trail = "%7Cresults." + identifier;
         }
 
         return new ForwardParameters(mapping.findForward("results"))

@@ -1,7 +1,7 @@
 package org.intermine.webservice.server.search;
 
 /*
- * Copyright (C) 2002-2016 FlyMine
+ * Copyright (C) 2002-2017 FlyMine
  *
  * This code may be freely distributed and modified under the
  * terms of the GNU Lesser General Public Licence.  This should
@@ -63,7 +63,7 @@ public class QuickSearch extends JSONService
 
     private Map<String, Map<String, Object>> headerObjs
         = new HashMap<String, Map<String, Object>>();
-
+    Map<String, String> kvPairs = new HashMap<String, String>();
     private final ServletContext servletContext;
 
     /**
@@ -103,6 +103,8 @@ public class QuickSearch extends JSONService
             headerObjs.put("facets", facetData);
         }
 
+        kvPairs.put("totalHits", String.valueOf(results.getTotalHits()));
+
         QuickSearchResultProcessor processor = getProcessor();
         Iterator<KeywordSearchResult> it = searchResultsParsed.iterator();
         for (int i = 0; input.wantsMore(i) && it.hasNext(); i++) {
@@ -117,6 +119,8 @@ public class QuickSearch extends JSONService
         final Map<String, Object> attributes = new HashMap<String, Object>();
         attributes.putAll(super.getHeaderAttributes());
         if (formatIsJSON()) {
+
+            attributes.put(JSONFormatter.KEY_KV_PAIRS, kvPairs);
             attributes.put(JSONFormatter.KEY_INTRO, "\"results\":[");
             attributes.put(JSONFormatter.KEY_OUTRO, "]");
             attributes.put(JSONFormatter.KEY_HEADER_OBJS, headerObjs);
@@ -127,8 +131,7 @@ public class QuickSearch extends JSONService
     private Map<String, String> getFacetValues(Vector<KeywordSearchFacetData> facets) {
         HashMap<String, String> facetValues = new HashMap<String, String>();
     PARAM_LOOP:
-        for (@SuppressWarnings("unchecked")
-            Enumeration<String> params = request.getParameterNames();
+        for (Enumeration<String> params = request.getParameterNames();
                 params.hasMoreElements();) {
             String param = params.nextElement();
             String value = request.getParameter(param);

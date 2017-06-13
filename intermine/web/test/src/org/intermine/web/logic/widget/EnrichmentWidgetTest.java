@@ -1,7 +1,7 @@
 package org.intermine.web.logic.widget;
 
 /*
- * Copyright (C) 2002-2016 FlyMine
+ * Copyright (C) 2002-2017 FlyMine
  *
  * This code may be freely distributed and modified under the
  * terms of the GNU Lesser General Public Licence.  This should
@@ -11,6 +11,7 @@ package org.intermine.web.logic.widget;
  */
 
 import java.math.BigDecimal;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -84,6 +85,25 @@ public class EnrichmentWidgetTest extends WidgetConfigTestCase
         EnrichmentWidgetImplLdr ldr
             = new EnrichmentWidgetImplLdr(bag, null, os, (EnrichmentWidgetConfig) config, filter, false, null,
                     null, null);
+        EnrichmentInput input = new EnrichmentInputWidgetLdr(os, ldr);
+        Double maxValue = Double.parseDouble(MAX);
+        results = EnrichmentCalculation.calculate(input, maxValue, CORRECTION, false, null);
+
+        List<List<Object>> exportResults = getResults();
+
+        assertEquals(1, exportResults.size());       // there is only one contract
+        assertEquals(2, exportResults.get(0).get(3));// 2 employees match with the only contracts
+    }
+
+    public void testProcessWithIDs() throws Exception {
+        List<Integer> ids = bag.getContentsAsIds();
+        StringBuilder idsAsString = new StringBuilder();
+        for (Integer id: ids) {
+            idsAsString.append(id).append(",");
+        }
+        EnrichmentWidgetImplLdr ldr
+            = new EnrichmentWidgetImplLdr(null, null, os, (EnrichmentWidgetConfig) config, filter, false, null,
+                    idsAsString.toString(), null);
         EnrichmentInput input = new EnrichmentInputWidgetLdr(os, ldr);
         Double maxValue = Double.parseDouble(MAX);
         results = EnrichmentCalculation.calculate(input, maxValue, CORRECTION, false, null);

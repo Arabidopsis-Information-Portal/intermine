@@ -1,7 +1,7 @@
 package org.intermine.bio.web.displayer;
 
 /*
- * Copyright (C) 2002-2016 FlyMine
+ * Copyright (C) 2002-2017 FlyMine
  *
  * This code may be freely distributed and modified under the
  * terms of the GNU Lesser General Public Licence.  This should
@@ -96,8 +96,8 @@ public class OverlappingFeaturesDisplayer extends ReportDisplayer
 
                     // get the types
                     List<Class<?>> lt = PathQueryResultHelper.
-                    queryForTypesInCollection(reportObject.getObject(), "overlappingFeatures",
-                            im.getObjectStore());
+                            queryForTypesInCollection(reportObject.getObject(),
+                                    "overlappingFeatures", im.getObjectStore());
 
                     // make collection into a list
                     List<?> collectionList;
@@ -110,8 +110,6 @@ public class OverlappingFeaturesDisplayer extends ReportDisplayer
                             collectionList = new ArrayList(collection);
                         }
                     }
-
-
 
                 // separate objects into their types
                 looptyloop:

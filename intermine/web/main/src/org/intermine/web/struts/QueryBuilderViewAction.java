@@ -1,7 +1,7 @@
 package org.intermine.web.struts;
 
 /*
- * Copyright (C) 2002-2016 FlyMine
+ * Copyright (C) 2002-2017 FlyMine
  *
  * This code may be freely distributed and modified under the
  * terms of the GNU Lesser General Public Licence.  This should
@@ -45,7 +45,7 @@ public class QueryBuilderViewAction extends InterMineAction
         throws Exception {
         SessionMethods.logQuery(request.getSession());
         return new ForwardParameters(mapping.findForward("results"))
-                            .addParameter("trail", "|query|results.0")
+                            .addParameter("trail", "%7Cquery%7Cresults.0")
                             .addParameter("queryBuilder", "true").forward();
     }
 }

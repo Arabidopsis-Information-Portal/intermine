@@ -1,7 +1,7 @@
 package org.intermine.webservice.server.query.result;
 
 /*
- * Copyright (C) 2002-2016 FlyMine
+ * Copyright (C) 2002-2017 FlyMine
  *
  * This code may be freely distributed and modified under the
  * terms of the GNU Lesser General Public Licence.  This should
@@ -99,6 +99,11 @@ public class TableRowService extends QueryResultService
         }
         final Results results = os.execute(q, QueryResultService.BATCH_SIZE, true, false, false);
         final Page page = new Page(firstResult, (maxResults == 0) ? null : maxResults);
+
+        Query realQ = results.getQuery();
+        if (realQ == q) {
+            getPathQueryExecutor().updateQueryToPathToQueryNode(q, pathToQueryNode);
+        }
 
         TableRowIterator iter = new TableRowIterator(
                 pathQuery, q, results, pathToQueryNode, page, im);

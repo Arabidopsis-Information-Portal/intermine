@@ -1,7 +1,7 @@
 package org.intermine.web.logic.widget;
 
 /*
- * Copyright (C) 2002-2016 FlyMine
+ * Copyright (C) 2002-2017 FlyMine
  *
  * This code may be freely distributed and modified under the
  * terms of the GNU Lesser General Public Licence.  This should
@@ -96,9 +96,9 @@ public class EnrichmentWidget extends Widget
             try {
                 Class<?> clazz = Class.forName(correctionCoefficientClassName);
                 Constructor<?> c = clazz.getConstructor(new Class[] {WidgetConfig.class,
-                    ObjectStore.class, InterMineBag.class});
+                    ObjectStore.class, InterMineBag.class, String.class});
                 correctionCoefficient =  (CorrectionCoefficient) c.newInstance(new Object[] {
-                    config, os, bag});
+                    config, os, bag, ids});
                 this.extraCorrectionCoefficient = correctionCoefficient
                     .isSelected(options.getExtraCorrectionCoefficient());
             } catch (ClassNotFoundException cnfe) {

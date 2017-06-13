@@ -1,7 +1,7 @@
 package org.intermine.webservice.server.complexes;
 
 /*
- * Copyright (C) 2002-2016 FlyMine
+ * Copyright (C) 2002-2017 FlyMine
  *
  * This code may be freely distributed and modified under the
  * terms of the GNU Lesser General Public Licence.  This should
@@ -233,8 +233,8 @@ public class ExportService extends JSONService
                 DefaultInteractor bindingInteractor = getInteractor(locatedOn, bindingXref);
 
                 // binding participant
-                DefaultModelledParticipant bindingParticipant
-                     = getParticipant(complex, locatedOn, bindingInteractor, null, null);
+                DefaultModelledParticipant bindingParticipant = getParticipant(complex, locatedOn,
+                    bindingInteractor, null, null);
 
                 // binding feature
                 DefaultModelledFeature bindingFeature = getFeature(locatedOn,

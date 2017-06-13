@@ -1,7 +1,7 @@
 package org.intermine.bio.web.export;
 
 /*
- * Copyright (C) 2002-2016 FlyMine
+ * Copyright (C) 2002-2017 FlyMine
  *
  * This code may be freely distributed and modified under the
  * terms of the GNU Lesser General Public Licence.  This should
@@ -52,8 +52,8 @@ public class GFF3Exporter implements Exporter
      * the fields we don't want to display as attributes
      */
     public static final Set<String> GFF_FIELDS = Collections
-    .unmodifiableSet(new HashSet<String>(Arrays.asList("chromosome.primaryIdentifier",
-            "primaryIdentifier", "score")));
+            .unmodifiableSet(new HashSet<String>(Arrays.asList("chromosome.primaryIdentifier",
+                    "primaryIdentifier", "score")));
     /**
      * for the gff header, link to taxomony
      */

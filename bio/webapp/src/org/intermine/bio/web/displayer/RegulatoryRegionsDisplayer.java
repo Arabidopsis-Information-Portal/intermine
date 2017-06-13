@@ -1,7 +1,7 @@
 package org.intermine.bio.web.displayer;
 
 /*
- * Copyright (C) 2002-2016 FlyMine
+ * Copyright (C) 2002-2017 FlyMine
  *
  * This code may be freely distributed and modified under the
  * terms of the GNU Lesser General Public Licence.  This should
@@ -99,7 +99,7 @@ public class RegulatoryRegionsDisplayer extends ReportDisplayer
 
                 // get the types
                 List<Class<?>> lt = PathQueryResultHelper.
-                queryForTypesInCollection(reportObject.getObject(), "regulatoryRegions",
+                        queryForTypesInCollection(reportObject.getObject(), "regulatoryRegions",
                         im.getObjectStore());
 
                 // make collection into a list

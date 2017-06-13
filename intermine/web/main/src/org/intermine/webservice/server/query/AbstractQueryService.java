@@ -1,7 +1,7 @@
 package org.intermine.webservice.server.query;
 
 /*
- * Copyright (C) 2002-2016 FlyMine
+ * Copyright (C) 2002-2017 FlyMine
  *
  * This code may be freely distributed and modified under the
  * terms of the GNU Lesser General Public Licence.  This should
@@ -59,7 +59,7 @@ public abstract class AbstractQueryService extends WebService
             final Properties webProperties = InterMineContext.getWebProperties();
             String baseUrl = webProperties.getProperty("webapp.baseurl");
             String path = webProperties.getProperty("webapp.path");
-            String relPath = path + "/service/" + XML_SCHEMA_LOCATION;
+            String relPath = path + "/" + XML_SCHEMA_LOCATION;
             URL url = new URL(baseUrl + "/" + relPath);
             return url.toString();
         } catch (MalformedURLException e) {

@@ -1,7 +1,7 @@
 package org.intermine.bio.dataconversion;
 
 /*
- * Copyright (C) 2002-2016 FlyMine
+ * Copyright (C) 2002-2017 FlyMine
  *
  * This code may be freely distributed and modified under the
  * terms of the GNU Lesser General Public Licence.  This should
@@ -78,8 +78,8 @@ public class EntrezPublicationsRetriever
         "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?tool=flymine&db=pubmed"
         + "&rettype=abstract&retmode=xml&id=";
     // summary
-    protected static final String ESUMMARY_URL =
-            "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?tool=flymine&db=pubmed&id=";
+    protected static final String ESUMMARY_URL = "https://eutils.ncbi.nlm.nih.gov/entrez/"
+            + "eutils/esummary.fcgi?tool=flymine&db=pubmed&id=";
     // number of records to retrieve per request
     protected static final int BATCH_SIZE = 500;
     // number of times to try the same batch from the server
@@ -456,7 +456,7 @@ public class EntrezPublicationsRetriever
          * Constructor
          * @param fromServerMap cache of publications
          */
-        public FullRecordHandler(Map<String, Map<String, Object>> fromServerMap) {
+        FullRecordHandler(Map<String, Map<String, Object>> fromServerMap) {
             this.cache = fromServerMap;
         }
 
@@ -633,7 +633,7 @@ public class EntrezPublicationsRetriever
          * Constructor
          * @param fromServerMap cache of publications
          */
-        public SummaryRecordHandler(Map<String, Map<String, Object>> fromServerMap) {
+        SummaryRecordHandler(Map<String, Map<String, Object>> fromServerMap) {
             this.cache = fromServerMap;
         }
 

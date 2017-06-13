@@ -1,7 +1,7 @@
 package org.intermine.api.profile;
 
 /*
- * Copyright (C) 2002-2016 FlyMine
+ * Copyright (C) 2002-2017 FlyMine
  *
  * This code may be freely distributed and modified under the
  * terms of the GNU Lesser General Public Licence.  This should
@@ -235,12 +235,22 @@ public class Profile
     public String getName() {
         // AKA is my name for myself (not public).
         if (prefers(UserPreferences.AKA)) {
-            return getPreferences().get(UserPreferences.AKA);
+            String aka = getPreferences().get(UserPreferences.AKA);
+
+            if (!("".equals(aka))) {
+                return aka;
+            }
         }
+
         // ALIAS is public (and globally unique) name
         if (prefers(UserPreferences.ALIAS)) {
-            return getPreferences().get(UserPreferences.ALIAS);
+            String alias = getPreferences().get(UserPreferences.ALIAS);
+
+            if (!("".equals(alias))) {
+                return alias;
+            }
         }
+
         // Else try and work out something reasonable.
         int atPos = username.indexOf("@");
         if (atPos > 0) {

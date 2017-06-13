@@ -1,7 +1,7 @@
 package org.intermine.sql.writebatch;
 
 /*
- * Copyright (C) 2002-2016 FlyMine
+ * Copyright (C) 2002-2017 FlyMine
  *
  * This code may be freely distributed and modified under the
  * terms of the GNU Lesser General Public Licence.  This should
@@ -14,6 +14,7 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.sql.SQLException;
 
+import org.apache.log4j.Logger;
 import org.postgresql.copy.CopyManager;
 
 /**
@@ -23,6 +24,7 @@ import org.postgresql.copy.CopyManager;
  */
 public class FlushJobPostgresCopyImpl implements FlushJob
 {
+    private static final Logger LOG = Logger.getLogger(FlushJobPostgresCopyImpl.class);
     private CopyManager copyManager;
     private String sql;
     private byte[] data;

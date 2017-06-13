@@ -1,7 +1,7 @@
 package org.intermine.web.logic.widget;
 
 /*
- * Copyright (C) 2002-2016 FlyMine
+ * Copyright (C) 2002-2017 FlyMine
  *
  * This code may be freely distributed and modified under the
  * terms of the GNU Lesser General Public Licence.  This should
@@ -16,11 +16,14 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.intermine.metadata.ClassDescriptor;
+import org.intermine.metadata.ConstraintOp;
 import org.intermine.api.profile.InterMineBag;
 import org.intermine.objectstore.ObjectStore;
 import org.intermine.pathquery.Constraints;
+import org.intermine.pathquery.PathConstraint;
 import org.intermine.pathquery.PathQuery;
 import org.intermine.web.logic.widget.config.GraphWidgetConfig;
+import org.intermine.web.logic.widget.config.WidgetConfigUtil;
 
 /**
  * @author Xavier Watkins
@@ -172,6 +175,19 @@ public class GraphWidget extends Widget
                                           "%series"));
         }
 
+        //constraints set in the constraints attribute
+        List<PathConstraint> pathConstraints = config.getPathConstraints();
+        for (PathConstraint pc : pathConstraints) {
+            if (!WidgetConfigUtil.isFilterConstraint(config, pc)) {
+                if (pc.getOp().equals(ConstraintOp.EQUALS)) {
+                    q.addConstraint(Constraints.eq(prefix + pc.getPath(),
+                            PathConstraint.getValue(pc)));
+                } else if (pc.getOp().equals(ConstraintOp.NOT_EQUALS)) {
+                    q.addConstraint(Constraints.neq(prefix + pc.getPath(),
+                            PathConstraint.getValue(pc)));
+                }
+            }
+        }
         return q;
     }
 

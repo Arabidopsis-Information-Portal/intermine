@@ -1,7 +1,7 @@
 package org.intermine.web.struts;
 
 /*
- * Copyright (C) 2002-2016 FlyMine
+ * Copyright (C) 2002-2017 FlyMine
  *
  * This code may be freely distributed and modified under the
  * terms of the GNU Lesser General Public Licence.  This should
@@ -78,9 +78,9 @@ public class CollectionDetailsAction extends Action
 
         // add results table to trail
         if (trail != null) {
-            trail += "|results." + pagedTable.getTableid();
+            trail += "%7Cresults." + pagedTable.getTableid();
         } else {
-            trail = "|results." + pagedTable.getTableid();
+            trail = "%7Cresults." + pagedTable.getTableid();
         }
 
         return new ForwardParameters(mapping.findForward("results")).addParameter("noSelect",

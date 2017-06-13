@@ -1,7 +1,7 @@
 package org.intermine.bio.web.widget;
 
 /*
- * Copyright (C) 2002-2016 FlyMine
+ * Copyright (C) 2002-2017 FlyMine
  *
  * This code may be freely distributed and modified under the
  * terms of the GNU Lesser General Public Licence.  This should
@@ -126,8 +126,14 @@ public class GeneLengthCorrectionCoefficient implements CorrectionCoefficient
         if ((bag != null && bag.getClassDescriptors().contains(sequenceFeatureCd)) || ids != null) {
             Query q = new Query();
             try {
+
+                String type = config.getTypeClass();
+                if (bag != null) {
+                    type = bag.getQualifiedType();
+                }
+
                 Class<? extends InterMineObject> clazz =
-                    (Class<InterMineObject>) Class.forName(bag.getQualifiedType());
+                        (Class<InterMineObject>) Class.forName(type);
                 QueryClass qc = new QueryClass(clazz);
                 QueryFunction count = new QueryFunction();
                 q.addToSelect(count);
