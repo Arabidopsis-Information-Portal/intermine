@@ -41,10 +41,39 @@
    var phytomine = new imjs.Service({root: webapp_root_url});
 
    var options = {
-     type: 'table',
-     service: phytomine,
-     query: {"model":{"name":"genomic"},"select":["Homolog.gene2.name","Homolog.organism2.shortName","Homolog.gene2.briefDescription"],"constraintLogic":"A and B","where":[{"path":"Homolog.organism1.taxonId","op":"=","code":"A","value":"3702"},{"path":"Homolog.gene1.name","op":"=","code":"B","value":geneId}]},
-     properties: { pageSize: 10 }
+          type: 'table',
+          service: phytomine,
+          query: {
+              "model":{"name":"genomic"},
+              "select": [
+                "Homolog.ortholog_gene.primaryIdentifier",
+                "Homolog.ortholog_gene.organism.shortName",
+                "Homolog.ortholog_gene.briefDescription"
+              ],
+              "where": [
+                {
+                  "path": "Homolog.gene",
+                  "op": "LOOKUP",
+                  "value": geneId,
+                  "extraValue": "A. thaliana",
+                  "code": "A"
+                },
+                {
+                  "path": "Homolog.ortholog_gene.organism.shortName",
+                  "op": "!=",
+                  "value": "A. thaliana",
+                  "code": "B"
+                }
+              ],
+              "orderBy": [
+                {
+                  "path": "Homolog.ortholog_gene.organism.shortName",
+                  "direction": "ASC"
+                }
+              ],
+              "constraintLogic":"A and B"
+          },
+         properties: { pageSize: 10 }
     };
 
    var wrapSpan = function(text){
@@ -91,7 +120,7 @@
     };
 
     var phytomineGeneFormatter = function(o) {
-        return formatPhytomineLink(o.get('name'), "Gene", undefined);
+        return formatPhytomineLink(o.get('primaryIdentifier'), "Gene", undefined);
     };
 
     var phytomineOrganismFormatter = function(o) {
@@ -99,12 +128,12 @@
     };
 
     var phytomineDeflineFormatter = function(o) {
-        return formatPhytomineLink(o.get('name'), "Gene", o.get('briefDescription'));
+        return formatPhytomineLink(o.get('primaryIdentifier'), "Gene", o.get('briefDescription'));
     };
 
     // new way for using imtables
     imtables.formatting
-                .registerFormatter(phytomineGeneFormatter, 'genomic', 'Gene', [ 'name' ]);
+                .registerFormatter(phytomineGeneFormatter, 'genomic', 'Gene', [ 'primaryIdentifier' ]);
 
     imtables.formatting
                 .registerFormatter(phytomineOrganismFormatter, 'genomic', 'Organism', [ 'shortName' ]);

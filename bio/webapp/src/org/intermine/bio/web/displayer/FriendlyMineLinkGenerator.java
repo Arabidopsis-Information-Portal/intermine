@@ -143,13 +143,13 @@ public final class FriendlyMineLinkGenerator implements InterMineLinkGenerator
             if (mine.getLinkClasses().contains("phytomineHomolog")) {
                 // query for phytomine homolog data model
                 q.addViews(
-                        "Gene.homolog.gene2.primaryIdentifier",
-                        "Gene.homolog.gene2.symbol",
-                        "Gene.homolog.gene2.organism.shortName"
+                        "Gene.homolog.ortholog_gene.primaryIdentifier",
+                        "Gene.homolog.ortholog_gene.symbol",
+                        "Gene.homolog.ortholog_gene.organism.shortName"
                 );
-                q.addOrderBy("Gene.homolog.gene2.primaryIdentifier", OrderDirection.ASC);
-                q.addConstraint(Constraints.lookup("Gene.homolog.gene1", req.getIdentifier(), req.getDomain()), "A");
-                q.addConstraint(Constraints.neq("Gene.homolog.gene2.organism.shortName", req.getDomain()), "B");
+                q.addOrderBy("Gene.homolog.ortholog_gene.organism.shortName", OrderDirection.ASC);
+                q.addConstraint(Constraints.lookup("Gene.homolog.gene", req.getIdentifier(), req.getDomain()), "A");
+                q.addConstraint(Constraints.neq("Gene.homolog.ortholog_gene.organism.shortName", req.getDomain()), "B");
                 q.setConstraintLogic("A and B");
             } else {
                 // query for the standard homologue data model
