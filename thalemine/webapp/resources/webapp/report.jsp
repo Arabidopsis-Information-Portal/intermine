@@ -355,7 +355,7 @@
 </div>
 
 <%-- TODO JCVI: Change the link here to your displayer --%>
-<script charset="utf-8" type="text/javascript" src="${WEB_PROPERTIES['head.cdn.location']}/js/atted-displayer/1.1.0/build/atted-displayer-1.1.0.min.js"></script>
+<script charset="utf-8" type="text/javascript" src="${WEB_PROPERTIES['head.cdn.location']}/js/atted-displayer/1.2.0/build/atted-displayer-1.2.0.min.js"></script>
 
 <%-- Comment this out because it changes the formatting of the whole report page relative to the rest of the site --%>
 <%--<link rel="stylesheet" type="text/css" href="${WEB_PROPERTIES['head.cdn.location']}/css/bootstrap/2.3.2/css/bootstrap.min.css">--%>
@@ -403,8 +403,8 @@
       var opts = {
             target: '#atted_displayercontainer',
             AGIcode: id,
-            method: 'cor',
-            cutoff: 0.7,
+            method: 'mr',
+            cutoff: 20,
             guarantee: 10,
             service: webapp_url + "/service",
             atted: "${WEB_PROPERTIES['atted.url.prefix']}",
