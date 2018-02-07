@@ -116,7 +116,7 @@
       <fieldconfig fieldExpr="isObsolete" label="Is Obsolete?"/>
     </fields>
     <bagdisplayers>
-      <bagdisplayer src="friendlyMineLinkDisplayer.tile" showOnLeft="false" />
+      <displayer src="friendlyMineLinkDisplayer.tile" showOnLeft="false" />
     </bagdisplayers>
   </class>
 
